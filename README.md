@@ -50,4 +50,5 @@ src/
 │   ├── initialData.js
 │   └── validators.js
 ├── App.jsx
-└── index.css
+├── index.css
+└── main.jsx
