@@ -1,16 +1,53 @@
-# React + Vite
+# 🧺 WashFlow - Sistem Manajemen & Kasir Laundry Digital
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**WashFlow** adalah aplikasi web manajemen kasir dan pelacakan status laundry berbasis React yang dirancang dengan arsitektur *Clean Code*, antarmuka modern, dan alur kerja bisnis riil.
 
-Currently, two official plugins are available:
+Aplikasi ini memisahkan logika utilitas, komponen UI, dan data awal untuk memastikan keterbacaan serta pemeliharaan kode yang optimal.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Fitur Utama
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Dashboard & Statistik Real-Time:** Menampilkan ringkasan pesanan aktif, pesanan siap diambil, dan total pendapatan otomatis (hanya menghitung transaksi yang telah *Selesai* dan *Lunas*).
+- **Manajemen Status Ganda:**
+  - **Status Pengerjaan:** *Dicuci* ➔ *Disetrika* ➔ *Selesai*.
+  - **Status Pembayaran:** *Belum Lunas* vs *Lunas* (dengan validasi konfirmasi pembayaran).
+- **Sistem Soft-Delete (Arsip Riwayat):** Pesanan yang dibatalkan akan dihapus permanen, sedangkan pesanan yang telah selesai dan lunas diarsipkan ke halaman **Riwayat** tanpa merusak laporan keuangan.
+- **Pencarian Fleksibel (Lacak Resi/Nama):** Fitur pencarian multi-parameter yang memungkinkan pelacakan berdasarkan Nomor Resi (`TRX-XXXX`) maupun Nama Pelanggan.
+- **Validasi Input Ketat (Regex):**
+  - Input nama pelanggan dibatasi hanya huruf dan spasi.
+  - Batas maksimum berat cucian sebesar 100 Kg untuk mencegah *human error*.
+- **Routing Modular:** Navigasi antarhalaman tanpa *reload* memanfaatkan `react-router-dom`.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack & Utilities
+
+- **Framework & Core:** React (Vite)
+- **Routing:** `react-router-dom`
+- **UI & Iconography:** CSS Modern (Plus Jakarta Sans, Flexbox/Grid, Animations), `lucide-react`
+- **Architecture:** 
+  - `src/utils/formatters.js` - Helper format mata uang Rupiah (`Intl.NumberFormat`).
+  - `src/utils/validators.js` - Fungsi validasi input form menggunakan Regex.
+  - `src/utils/initialData.js` - Pemisahan state data awal.
+
+---
+
+## 📁 Struktur Proyek
+
+```text
+src/
+├── components/
+│   ├── Navbar.jsx
+│   └── OrderCard.jsx
+├── pages/
+│   ├── Home.jsx
+│   ├── AddOrder.jsx
+│   ├── TrackOrder.jsx
+│   └── History.jsx
+├── utils/
+│   ├── formatters.js
+│   ├── initialData.js
+│   └── validators.js
+├── App.jsx
+└── index.css
