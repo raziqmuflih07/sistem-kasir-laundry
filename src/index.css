@@ -325,3 +325,79 @@ hr { border: 0; height: 1px; background-color: #cbd5e1; margin: 20px 0; }
 .btn-payment:hover {
   background-color: #059669;
 }
+
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 1rem 0.75rem;
+  }
+
+  .navbar {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .nav-links a {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .stats-container {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .stat-box {
+    padding: 1rem;
+  }
+
+  .stat-box h4 {
+    font-size: 0.875rem;
+  }
+
+  .stat-box p {
+    font-size: 1.25rem;
+  }
+
+  .order-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .order-card {
+    padding: 1rem;
+  }
+
+  .form-container, .search-container {
+    padding: 1.25rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .input-field {
+    font-size: 16px; 
+    padding: 0.75rem;
+  }
+
+  .btn-primary, 
+  .btn-update, 
+  .btn-payment, 
+  .btn-delete {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 0.95rem;
+    display: block;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}
