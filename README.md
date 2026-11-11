@@ -36,19 +36,29 @@ Aplikasi ini memisahkan logika utilitas, komponen UI, dan data awal untuk memast
 ## 📁 Struktur Proyek
 
 ```text
-src/
-├── components/
-│   ├── Navbar.jsx
-│   └── OrderCard.jsx
-├── pages/
-│   ├── Home.jsx
-│   ├── AddOrder.jsx
-│   ├── TrackOrder.jsx
-│   └── History.jsx
-├── utils/
-│   ├── formatters.js
-│   ├── initialData.js
-│   └── validators.js
-├── App.jsx
-├── index.css
-└── main.jsx
+sistem-kasir-laundry/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   └── OrderCard.jsx
+│   ├── pages/
+│   │   ├── AddOrder.jsx
+│   │   ├── History.jsx
+│   │   ├── Home.jsx
+│   │   └── TrackOrder.jsx
+│   ├── utils/
+│   │   ├── formatters.js
+│   │   ├── initialData.js
+│   │   └── validators.js
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── README.md
+└── vite.config.js
