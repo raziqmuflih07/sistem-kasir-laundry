@@ -1,17 +1,26 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import AddOrder from './pages/AddOrder'
 import TrackOrder from './pages/TrackOrder'
 import History from './pages/History'
-import { initialOrders } from './utils/initialData' 
+import NotFound from './pages/NotFound'
+
+const STORAGE_KEY = 'laundry_orders';
 
 function App() {
-  const [orders, setOrders] = useState(initialOrders);
+  const [orders, setOrders] = useState(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(orders));
+  }, [orders]);
 
   const addOrder = (newOrder) => {
-    setOrders([...orders, { ...newOrder, isPaid: false, isArchived: false }]);
+    setOrders(prev => [...prev, { ...newOrder, isPaid: false, isArchived: false }]);
   }
 
   const updateStatus = (id, currentStatus) => {
@@ -19,13 +28,13 @@ function App() {
     if (currentStatus === "Dicuci") nextStatus = "Disetrika";
     else if (currentStatus === "Disetrika") nextStatus = "Selesai";
 
-    setOrders(orders.map(order => 
+    setOrders(prev => prev.map(order => 
       order.id === id ? { ...order, status: nextStatus } : order
     ));
   }
 
   const updatePayment = (id) => {
-    setOrders(orders.map(order => 
+    setOrders(prev => prev.map(order => 
       order.id === id ? { ...order, isPaid: true } : order
     ));
   }
@@ -37,11 +46,11 @@ function App() {
         return;
       }
       if(window.confirm("Pindahkan pesanan lunas ini ke Riwayat?")) {
-        setOrders(orders.map(order => order.id === id ? { ...order, isArchived: true } : order));
+        setOrders(prev => prev.map(order => order.id === id ? { ...order, isArchived: true } : order));
       }
     } else {
       if(window.confirm("Batalkan pesanan ini secara permanen?")) {
-        setOrders(orders.filter(order => order.id !== id));
+        setOrders(prev => prev.filter(order => order.id !== id));
       }
     }
   }
@@ -55,6 +64,7 @@ function App() {
           <Route path="/add" element={<AddOrder onAdd={addOrder} />} />
           <Route path="/track" element={<TrackOrder orders={orders} />} />
           <Route path="/history" element={<History orders={orders} />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </Router>
