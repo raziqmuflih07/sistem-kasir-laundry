@@ -10,30 +10,6 @@ import { CheckCircle2, AlertCircle } from 'lucide-react'
 
 const STORAGE_KEY = 'laundry_orders'
 
-// Data awal jika localStorage masih kosong
-const DEFAULT_INITIAL_ORDERS = [
-  {
-    id: 'TRX-2281',
-    resi: 'TRX-2281',
-    customerName: 'Hadi',
-    nama: 'Hadi',
-    phone: '0812-3456-7890',
-    weight: 5,
-    berat: 5,
-    service: 'Ekspres',
-    layanan: 'Ekspres',
-    pricePerKg: 10000,
-    total: 50000,
-    processStatus: 'Disetrika',
-    status: 'Disetrika',
-    isPaid: false,
-    isArchived: false,
-    createdAt: '16 Nov 2026, 09:30',
-    estimatedDone: '16 Nov 2026, 15:30',
-    notes: 'Pisahkan pakaian putih dan berwarna'
-  }
-]
-
 export default function App() {
   const [orders, setOrders] = useState(() => {
     try {
